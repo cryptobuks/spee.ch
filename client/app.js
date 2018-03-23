@@ -1,21 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { importCustomComponent } from 'utils/dynamicImport';
-/*
-config = {
-   pages: {
-     HomePage,
-   }
-}
 
-*/
-
-const dynamicImport = (path) => {
-  // check the config object for a component that matches this path
-  // if component doesnt exist in config, require default component
-};
-
-const HomePage = dynamicImport('pages/AboutPage');
+const HomePage = importCustomComponent('pages/HomePage') || require('pages/HomePage').default;
 const AboutPage = importCustomComponent('pages/AboutPage') || require('pages/AboutPage').default;
 const LoginPage = importCustomComponent('pages/LoginPage') || require('pages/LoginPage').default;
 const ShowPage = importCustomComponent('pages/ShowPage') || require('pages/ShowPage').default;

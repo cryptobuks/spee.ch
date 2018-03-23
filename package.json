@@ -12,8 +12,10 @@
     "fix": "eslint . --fix",
     "precommit": "eslint .",
     "babel": "babel",
+    "build": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build-main": "webpack --config webpack.prod.main.js",
+    "build-main-dev": "webpack --config webpack.dev.main.js"
   },
   "repository": {
     "type": "git",

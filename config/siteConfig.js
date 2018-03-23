@@ -19,7 +19,7 @@ function SiteConfig () {
     description: 'Open-source, decentralized image and video sharing.',
     host       : 'default',
     port       : 3000,
-    title      : 'Spee.ch',
+    title      : 'Default Title',
     twitter    : '@spee_ch',
   };
   this.publishing = {

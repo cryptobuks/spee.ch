@@ -9,7 +9,7 @@ function getDeepestChildValue (parent, childrenKeys) {
   return child;
 }
 
-export const dynamicImport = (filePath) => {
+export const importCustomComponent = (filePath) => {
   // validate inputs
   if (!filePath) {
     throw new Error('no file path provided to dynamicImport()');
@@ -20,7 +20,8 @@ export const dynamicImport = (filePath) => {
     throw new Error('file path provided to dynamicImport() must be a string');
   }
   if (!customComponents) {
-    return require(`${filePath}`);
+    console.log('no custom components config provided');
+    return null;
   }
   // split out the file folders  // filter out any empty or white-space-only strings
   const folders = filePath.split('/').filter(folderName => folderName.replace(/\s/g, '').length);
@@ -28,8 +29,10 @@ export const dynamicImport = (filePath) => {
   // i.e. customComponents[folders[0]][folders[2][...][folders[n]]
   const component = getDeepestChildValue(customComponents, folders);
   if (component) {
-    return component;  // return custom component
+    console.log('found custom component for', filePath);
+    return component;
   } else {
-    return require(`${filePath}`);
+    console.log('no custom component found for', filePath);
+    return null;
   }
 };

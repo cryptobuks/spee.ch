@@ -22,6 +22,7 @@ function SiteConfig () {
     title      : 'Default Title',
     twitter    : '@spee_ch',
   };
+  this.localPublicFolder = null;
   this.publishing = {
     additionalClaimAddresses: [],
     disabled                : false,
@@ -35,11 +36,12 @@ function SiteConfig () {
     if (!config) {
       return console.log('No site config received.');
     }
-    const { analytics, assetDefaults, auth, customComponents, details, publishing } = config;
+    const { analytics, assetDefaults, auth, customComponents, details, localPublicFolder, publishing } = config;
     this.analytics = analytics;
     this.assetDefaults = assetDefaults;
     this.auth = auth;
     this.details = details;
+    this.localPublicFolder = localPublicFolder;
     this.publishing = publishing;
     this.customComponents = customComponents;
   };

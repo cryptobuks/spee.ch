@@ -1,7 +1,13 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const packageBaseConfig = require('./webpack.package.common.js');
+const appBaseConfig = require('./webpack.app.common.js');
+const componentsBaseConfig = require('./webpack.components.common.js');
+const containersBaseConfig = require('./webpack.containers.common.js');
+const pagesBaseConfig = require('./webpack.pages.common.js');
+const reducersBaseConfig = require('./webpack.reducers.common.js');
+const sagasBaseConfig = require('./webpack.sagas.common.js');
+const serverBaseConfig = require('./webpack.server.common.js');
 
 const productionBuildConfig = {
   devtool: 'source-map',
@@ -16,5 +22,11 @@ const productionBuildConfig = {
 };
 
 module.exports = [
-  merge(packageBaseConfig, productionBuildConfig),
+  merge(appBaseConfig, productionBuildConfig),
+  merge(componentsBaseConfig, productionBuildConfig),
+  merge(containersBaseConfig, productionBuildConfig),
+  merge(pagesBaseConfig, productionBuildConfig),
+  merge(reducersBaseConfig, productionBuildConfig),
+  merge(sagasBaseConfig, productionBuildConfig),
+  merge(serverBaseConfig, productionBuildConfig),
 ];

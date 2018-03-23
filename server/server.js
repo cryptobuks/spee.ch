@@ -19,6 +19,7 @@ function Server () {
     require('../config/siteConfig.js').configure(siteConfig);
     this.sessionKey = siteConfig.auth.sessionKey;
     this.PORT = siteConfig.details.port;
+    this.localPublicFolder = siteConfig.localPublicFolder;
   };
   this.configureSlack = (slackConfig) => {
     require('../config/slackConfig.js').configure(slackConfig);
@@ -33,7 +34,9 @@ function Server () {
     // add middleware
     app.use(helmet()); // set HTTP headers to protect against well-known web vulnerabilties
     app.use(express.static(`${__dirname}/public`)); // 'express.static' to serve static files from public directory
-    app.use(express.static(`${__dirname}/localPublic`));  // use process.cwb to see where this started from?
+    if (this.localPublicFolder) {
+      app.use(express.static(`${this.localPublicFolder}`));  // use process.cwb to see where this started from?
+    };
     app.use(bodyParser.json()); // 'body parser' for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // 'body parser' for parsing application/x-www-form-urlencoded
     app.use((req, res, next) => {  // custom logging middleware to log all incoming http requests
